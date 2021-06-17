@@ -1,0 +1,44 @@
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Haus oder Wohnung</ng-template>
+      <mat-form-field>
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile>
+            1
+          </mat-grid-tile>
+          <mat-grid-tile>
+            2
+          </mat-grid-tile>
+        </mat-grid-list>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Weiter</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Gebe deine Bedürfnisse ein</ng-template>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Zurück</button>
+        <button mat-button matStepperNext>Weiter</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Bekomme eine Vorraussage</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Zurück</button>
+      <button mat-button (click)="stepper.reset()">Zurücksetzen</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
