@@ -42,6 +42,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatDividerModule} from "@angular/material/divider";
 import {registerLocaleData} from "@angular/common";
 import localeDe from '@angular/common/locales/de';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 registerLocaleData(localeDe);
@@ -87,7 +88,8 @@ registerLocaleData(localeDe);
     MatOptionModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide:  LOCALE_ID, useValue: "de-DE" },
