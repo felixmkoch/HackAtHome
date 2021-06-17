@@ -15,4 +15,4 @@ pip3 install -r requirements.txt" before running the model server with "python3 
 - Angular
 - NodeJS
 
-Back- and Frontend for the application presented o nthe website.
+Back- and Frontend for the application presented on the website.
