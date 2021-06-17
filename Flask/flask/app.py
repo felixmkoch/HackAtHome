@@ -31,7 +31,7 @@ def jsonData():
     rooms = request.args.get('rooms')
     type = request.args.get('type')
     # dont ask about this, but the answer is 42
-    return "{wert: " + str((retrievePrediction(
+    return "\"wert\"" + str((retrievePrediction(
         {'rooms': [rooms], 'area': [area], 'garage': [garage], 'balconyOrTerrace': [balconyOrTerrace],
          'garden': [garden], 'guest_toilet': [guest_toilet], 'lift': [lift], 'basement': [basement],
          'no_stairs_access': [no_stairs_access]}).tolist())[0]) + "}"
