@@ -59,8 +59,8 @@ export class EstimateComponent implements OnInit {
       propertyType: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      size: [50],
-      rooms: [4],
+      size: [70],
+      rooms: [2.5],
       garagePlaces: [null],
     });
     this.thirdFormGroup = this._formBuilder.group({
@@ -85,7 +85,7 @@ export class EstimateComponent implements OnInit {
       setTimeout(()=>{
         this.loading = false;
         this.estimatedPrice = result?.estimate;
-        }, 1500)
+        }, 1)
 
       console.log('result: ', result)
     })
