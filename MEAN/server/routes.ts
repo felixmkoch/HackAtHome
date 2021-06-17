@@ -2,11 +2,13 @@ import * as express from 'express';
 
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
+import EstimationCtrl from "./controllers/priceEstimation";
 
 function setRoutes(app): void {
   const router = express.Router();
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
+  const estimateCtrl = new EstimationCtrl();
 
   // Cats
   router.route('/cats').get(catCtrl.getAll);
@@ -24,6 +26,9 @@ function setRoutes(app): void {
   router.route('/user/:id').get(userCtrl.get);
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
+
+  // Price estimation
+  router.route('/estimtate').post(estimateCtrl.postEstimation)
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
