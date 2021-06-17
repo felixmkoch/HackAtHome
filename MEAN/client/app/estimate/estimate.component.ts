@@ -29,13 +29,13 @@ export class EstimateComponent implements OnInit {
   ];
 
   booleanParameter = [
-    { name: 'balconyOrTerrace', displayName: 'Balkon oder Terrasse', isSelected: false, icon: 'home' },
-    { name: 'basement', displayName: 'Keller', isSelected: false, icon: 'home' },
-    { name: 'garden', displayName: 'Garten', isSelected: false, icon: 'home' },
-    { name: 'guestToilet', displayName: 'Gäste-WC', isSelected: false, icon: 'home' },
-    { name: 'kitchen', displayName: 'Einbauküche', isSelected: false, icon: 'home' },
-    { name: 'lift', displayName: 'Aufzug', isSelected: false, icon: 'home' },
-    { name: 'noStairAccess', displayName: 'Treppenloser Zugang', isSelected: false, icon: 'home' },
+    { name: 'balconyOrTerrace', displayName: 'Balkon oder Terrasse', isSelected: false, icon: 'balcony' },
+    { name: 'basement', displayName: 'Keller', isSelected: false, icon: 'deck' },
+    { name: 'garden', displayName: 'Garten', isSelected: false, icon: 'yard' },
+    { name: 'guestToilet', displayName: 'Gäste-WC', isSelected: false, icon: 'wc' },
+    { name: 'kitchen', displayName: 'Einbauküche', isSelected: false, icon: 'countertops' },
+    { name: 'lift', displayName: 'Aufzug', isSelected: false, icon: 'elevator' },
+    { name: 'noStairAccess', displayName: 'Treppenloser Zugang', isSelected: false, icon: 'accessible' },
   ];
 
   allTypes: FlatType[] = [
