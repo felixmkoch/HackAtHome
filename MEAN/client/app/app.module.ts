@@ -32,6 +32,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatRadioModule,
+    MatCardModule
   ],
   providers: [
     AuthService,

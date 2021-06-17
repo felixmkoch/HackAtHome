@@ -1,0 +1,10 @@
+
+mat-radio-group.asCard{
+  .mat-radio-container{
+    opacity: 0;
+  }
+
+  .mat-radio-checked mat-card{
+    border: 1px solid red;
+  }
+}

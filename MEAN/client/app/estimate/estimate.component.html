@@ -2,18 +2,17 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Haus oder Wohnung</ng-template>
-      <mat-form-field>
-        <mat-grid-list cols="2" rowHeight="2:1">
-          <mat-grid-tile>
-            1
-          </mat-grid-tile>
-          <mat-grid-tile>
-            2
-          </mat-grid-tile>
-        </mat-grid-list>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
+        <mat-radio-group class="asCard" formControlName="propertyType">
+          <mat-radio-button *ngFor="let pokemon of pkmns" [value]="pokemon.name">
+            <mat-card>
+              <mat-card-title>{{pokemon.number}}</mat-card-title>
+              <mat-card-subtitle>{{pokemon.name}}</mat-card-subtitle>
+              <mat-card-content>
+                <img src="https://img.pokemondb.net/sprites/silver/normal/{{pokemon.name}}.png">
+              </mat-card-content>
+            </mat-card>
+          </mat-radio-button>
+        </mat-radio-group>
       <div>
         <button mat-button matStepperNext>Weiter</button>
       </div>
@@ -35,7 +34,9 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Bekomme eine Vorraussage</ng-template>
-    <p>You are now done.</p>
+    <button mat-button (click)="getForm()">
+      get current form
+    </button>
     <div>
       <button mat-button matStepperPrevious>Zurück</button>
       <button mat-button (click)="stepper.reset()">Zurücksetzen</button>

@@ -45,6 +45,7 @@
     "mongoose": "^5.12.13",
     "morgan": "^1.10.0",
     "popper.js": "^1.16.1",
+    "prettier": "^2.3.1",
     "rxjs": "~6.6.0",
     "rxjs-compat": "~6.5.4",
     "tether": "^1.4.7",
