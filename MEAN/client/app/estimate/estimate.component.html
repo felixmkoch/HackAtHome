@@ -3,7 +3,7 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Haus oder Wohnung</ng-template>
         <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
-          <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name">
+          <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
             <mat-card style="margin-top: 20px">
               <mat-card-title>{{card.name}}</mat-card-title>
               <mat-card-content>
@@ -133,3 +133,4 @@
     </div>
   </mat-step>
 </mat-vertical-stepper>
+<div *ngIf="!!estimatedPrice">Geschätzter Preis: {{estimatedPrice}}</div>

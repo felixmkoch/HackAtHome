@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {RealEstateProperties} from "../shared/models/realEstateProperties.model";
+import {estimateResult, EstimateService} from "../services/estimate.service";
 
 export type FlatType =
   | 'Dachgeschoss'
@@ -24,8 +25,8 @@ export class EstimateComponent implements OnInit {
   thirdFormGroup: FormGroup;
 
   propertyTypes = [
-    { name: 'Haus', icon: 'home' },
-    { name: 'Eigentumswohnung', icon: 'apartment' },
+    { name: 'Eigentumswohnung', icon: 'apartment', disabled: false },
+    { name: 'Haus (coming soon)', icon: 'home', disabled: true },
   ];
 
   booleanParameter = [
@@ -35,6 +36,7 @@ export class EstimateComponent implements OnInit {
     { name: 'guestToilet', displayName: 'Gäste-WC', isSelected: false, icon: 'wc' },
     { name: 'kitchen', displayName: 'Einbauküche', isSelected: false, icon: 'countertops' },
     { name: 'lift', displayName: 'Aufzug', isSelected: false, icon: 'elevator' },
+    { name: 'garage', displayName: 'Garage', isSelected: false, icon: 'garage' },
     { name: 'noStairAccess', displayName: 'Treppenloser Zugang', isSelected: false, icon: 'accessible' },
   ];
 
@@ -49,7 +51,9 @@ export class EstimateComponent implements OnInit {
     'Souterrain',
   ];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  estimatedPrice: number;
+
+  constructor(private _formBuilder: FormBuilder, private estimationService: EstimateService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -71,6 +75,7 @@ export class EstimateComponent implements OnInit {
       guestToilet: [false],
       kitchen: [false],
       lift: [false],
+      garage: [false],
       noStairAccess: [false]
     });
   }
@@ -82,6 +87,10 @@ export class EstimateComponent implements OnInit {
       ...this.secondFormGroup.getRawValue(),
       ...this.thirdFormGroup.getRawValue()
     }
+    this.estimationService.getEstimate(allData).subscribe((result: estimateResult) => {
+      this.estimatedPrice = result?.estimate;
+      console.log('result: ', result)
+    })
     console.log('allData: ', allData);
   }
 
