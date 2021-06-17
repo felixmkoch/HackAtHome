@@ -2,7 +2,7 @@
   "name": "angular2-full-stack",
   "version": "12.0.3",
   "license": "MIT",
-  "author": "Davide Violante",
+  "author": "Homestead Team",
   "description": "Angular Full Stack project built using Angular 2+, Express, Mongoose and Node.",
   "engines": {
     "node": "14.17.0",
