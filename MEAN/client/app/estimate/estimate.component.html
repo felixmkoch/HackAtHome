@@ -2,13 +2,12 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Haus oder Wohnung</ng-template>
-        <mat-radio-group class="asCard" formControlName="propertyType">
-          <mat-radio-button *ngFor="let pokemon of pkmns" [value]="pokemon.name">
-            <mat-card>
-              <mat-card-title>{{pokemon.number}}</mat-card-title>
-              <mat-card-subtitle>{{pokemon.name}}</mat-card-subtitle>
+        <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
+          <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name">
+            <mat-card style="margin-top: 20px">
+              <mat-card-title>{{card.name}}</mat-card-title>
               <mat-card-content>
-                <img src="https://img.pokemondb.net/sprites/silver/normal/{{pokemon.name}}.png">
+                <mat-icon>{{card.icon}}</mat-icon>
               </mat-card-content>
             </mat-card>
           </mat-radio-button>
@@ -20,12 +19,103 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Gebe deine Bedürfnisse ein</ng-template>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
-      </mat-form-field>
+      <ng-template matStepLabel>Stelle Grundparameter ein</ng-template>
+      <div fxLayout="column" fxLayoutAlign="space-around start" class="sliders">
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div>
+            <mat-slider thumbLabel
+                        min="10" max="500"
+                        formControlName="size"
+                        class="slider"></mat-slider>
+          </div>
+          <div>
+            <span>Fläche: {{secondFormGroup.get('size').value}} m²</span>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div>
+            <mat-slider thumbLabel
+                        min="1" max="10" step="0.5"
+                        tickInterval="1"
+                        formControlName="rooms"
+                        class="slider">
+            </mat-slider>
+          </div>
+          <div>
+            <span>Räume: {{secondFormGroup.get('rooms').value}}</span>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div>
+            <mat-slider thumbLabel
+                        min="1" max="10" step="1"
+                        tickInterval="1"
+                        formControlName="bathrooms"
+                        class="slider">
+            </mat-slider>
+          </div>
+          <div>
+            <span>Bäder: {{secondFormGroup.get('bathrooms').value}}</span>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div>
+            <mat-slider thumbLabel
+                        min="1" max="10" step="0.5"
+                        tickInterval="1"
+                        formControlName="bedrooms"
+                        class="slider">
+            </mat-slider>
+          </div>
+          <div>
+            <span>Schlafzimmer: {{secondFormGroup.get('bedrooms').value}}</span>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div>
+            <mat-slider thumbLabel
+                        min="1" max="15"
+                        tickInterval="1"
+                        formControlName="level"
+                        class="slider">
+            </mat-slider>
+          </div>
+          <div>
+            <span>Etage: {{secondFormGroup.get('level').value}}</span>
+          </div>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Wohnungstyp auswählen</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let type of allTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Zurück</button>
+        <button mat-button matStepperNext>Weiter</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Stelle zusätzliche Bedürfnisse ein</ng-template>
+      <div *ngFor="let card of booleanParameter">
+        <mat-card style="margin-top: 20px" (click)="clickCard(card)" [ngStyle]="{'border': card.isSelected ? '1px solid red' : ''}">
+          <mat-card-title>{{card.displayName}}</mat-card-title>
+          <mat-card-content>
+            <mat-icon>{{card.icon}}</mat-icon>
+          </mat-card-content>
+        </mat-card>
+      </div>
       <div>
         <button mat-button matStepperPrevious>Zurück</button>
         <button mat-button matStepperNext>Weiter</button>

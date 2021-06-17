@@ -1,5 +1,6 @@
 
 mat-radio-group.asCard{
+  margin-top: 20px;
   .mat-radio-container{
     opacity: 0;
   }
@@ -7,4 +8,12 @@ mat-radio-group.asCard{
   .mat-radio-checked mat-card{
     border: 1px solid red;
   }
+}
+
+.slider{
+  width: 300px;
+}
+
+.sliders{
+  margin-top: 20px;
 }

@@ -34,6 +34,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCardModule} from "@angular/material/card";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import {MatCardModule} from "@angular/material/card";
     MatInputModule,
     MatGridListModule,
     MatRadioModule,
-    MatCardModule
+    MatCardModule,
+    MatSliderModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [
     AuthService,
