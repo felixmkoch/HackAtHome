@@ -13,9 +13,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {EstimateComponent} from "./estimate/estimate.component";
 
 const routes: Routes = [
   { path: '', component: AboutComponent },
+  { path: 'estimate', component: EstimateComponent },
   { path: 'cats', component: CatsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
