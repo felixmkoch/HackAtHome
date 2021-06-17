@@ -28,7 +28,7 @@ function setRoutes(app): void {
   router.route('/user/:id').delete(userCtrl.delete);
 
   // Price estimation
-  router.route('/estimtate').post(estimateCtrl.postEstimation)
+  router.route('/estimate').post(estimateCtrl.postEstimation)
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

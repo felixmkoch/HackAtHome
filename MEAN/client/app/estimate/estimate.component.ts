@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {RealEstateProperties} from "../shared/models/realEstateProperties.model";
+import {EstimateService} from "../services/estimate.service";
 
 export type FlatType =
   | 'Dachgeschoss'
@@ -49,7 +50,7 @@ export class EstimateComponent implements OnInit {
     'Souterrain',
   ];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, private estimationService: EstimateService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -82,6 +83,9 @@ export class EstimateComponent implements OnInit {
       ...this.secondFormGroup.getRawValue(),
       ...this.thirdFormGroup.getRawValue()
     }
+    this.estimationService.getEstimate(allData).subscribe((result: number) => {
+      console.log('result: ', result)
+    })
     console.log('allData: ', allData);
   }
 
