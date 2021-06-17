@@ -9,8 +9,6 @@ class EstimationCtrl extends BaseCtrl {
     try {
       const requestBody = req.body;
       console.log('requestBody: ', requestBody);
-      //const result = await fetch('https://github.com/');
-      //console.log('result: ', result.text().body);
       /*
       fetch('https://github.com/')
         .then(res => res.text())

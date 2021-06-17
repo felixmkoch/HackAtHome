@@ -1,3 +1,13 @@
+.estimator {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: left;
+  margin-top: -15px;
+  max-width: 98vw;
+  //width: fit-content;
+  margin: 0 auto;
+}
 
 mat-radio-group.asCard{
   margin-top: 20px;
@@ -16,4 +26,13 @@ mat-radio-group.asCard{
 
 .sliders{
   margin-top: 20px;
+}
+
+#resultButton{
+  margin: 25px;
+}
+
+.result-section {
+  margin: 15px;
+  padding-bottom: 20px;
 }

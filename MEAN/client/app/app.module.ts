@@ -1,5 +1,5 @@
 // Angular
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID} from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 // Modules
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +37,15 @@ import {MatCardModule} from "@angular/material/card";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatDividerModule} from "@angular/material/divider";
+import {registerLocaleData} from "@angular/common";
+import localeDe from '@angular/common/locales/de';
+
+
+registerLocaleData(localeDe);
+
 
 @NgModule({
   declarations: [
@@ -75,9 +84,13 @@ import {MatOptionModule} from "@angular/material/core";
     MatCardModule,
     MatSliderModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatDividerModule
   ],
   providers: [
+    { provide:  LOCALE_ID, useValue: "de-DE" },
     AuthService,
     AuthGuardLogin,
     AuthGuardAdmin,
