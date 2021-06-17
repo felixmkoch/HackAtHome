@@ -1,136 +1,147 @@
-<mat-vertical-stepper #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Haus oder Wohnung</ng-template>
-        <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
-          <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
-            <mat-card style="margin-top: 20px">
-              <mat-card-title>{{card.name}}</mat-card-title>
+<div class="estimator">
+  <div class="mat-elevation-z8">
+    <mat-vertical-stepper #stepper >
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Haus oder Wohnung</ng-template>
+          <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
+            <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
+              <mat-card style="margin-top: 20px">
+                <mat-card-title>{{card.name}}</mat-card-title>
+                <mat-card-content>
+                  <mat-icon>{{card.icon}}</mat-icon>
+                </mat-card-content>
+              </mat-card>
+            </mat-radio-button>
+          </mat-radio-group>
+          <div>
+            <button mat-button matStepperNext>Weiter</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Stelle Grundparameter ein</ng-template>
+          <div fxLayout="column" fxLayoutAlign="space-around start" class="sliders">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <div>
+                <mat-slider thumbLabel
+                            min="10" max="500"
+                            formControlName="size"
+                            class="slider"></mat-slider>
+              </div>
+              <div>
+                <span>Fläche: {{secondFormGroup.get('size').value}} m²</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <div>
+                <mat-slider thumbLabel
+                            min="1" max="10" step="0.5"
+                            tickInterval="1"
+                            formControlName="rooms"
+                            class="slider">
+                </mat-slider>
+              </div>
+              <div>
+                <span>Räume: {{secondFormGroup.get('rooms').value}}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <div>
+                <mat-slider thumbLabel
+                            min="1" max="10" step="1"
+                            tickInterval="1"
+                            formControlName="bathrooms"
+                            class="slider">
+                </mat-slider>
+              </div>
+              <div>
+                <span>Bäder: {{secondFormGroup.get('bathrooms').value}}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <div>
+                <mat-slider thumbLabel
+                            min="1" max="10" step="0.5"
+                            tickInterval="1"
+                            formControlName="bedrooms"
+                            class="slider">
+                </mat-slider>
+              </div>
+              <div>
+                <span>Schlafzimmer: {{secondFormGroup.get('bedrooms').value}}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+              <div>
+                <mat-slider thumbLabel
+                            min="1" max="15"
+                            tickInterval="1"
+                            formControlName="level"
+                            class="slider">
+                </mat-slider>
+              </div>
+              <div>
+                <span>Etage: {{secondFormGroup.get('level').value}}</span>
+              </div>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Wohnungstyp auswählen</mat-label>
+                <mat-select formControlName="type">
+                  <mat-option *ngFor="let type of allTypes" [value]="type">
+                    {{type}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Zurück</button>
+            <button mat-button matStepperNext>Weiter</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Stelle zusätzliche Bedürfnisse ein</ng-template>
+          <div *ngFor="let card of booleanParameter">
+            <mat-card style="margin-top: 20px" (click)="clickCard(card)" [ngStyle]="{'border': card.isSelected ? '1px solid red' : ''}">
+              <mat-card-title>{{card.displayName}}</mat-card-title>
               <mat-card-content>
                 <mat-icon>{{card.icon}}</mat-icon>
               </mat-card-content>
             </mat-card>
-          </mat-radio-button>
-        </mat-radio-group>
-      <div>
-        <button mat-button matStepperNext>Weiter</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Stelle Grundparameter ein</ng-template>
-      <div fxLayout="column" fxLayoutAlign="space-around start" class="sliders">
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-          <div>
-            <mat-slider thumbLabel
-                        min="10" max="500"
-                        formControlName="size"
-                        class="slider"></mat-slider>
           </div>
           <div>
-            <span>Fläche: {{secondFormGroup.get('size').value}} m²</span>
+            <button mat-button matStepperPrevious>Zurück</button>
+            <button mat-button matStepperNext>Weiter</button>
           </div>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-          <div>
-            <mat-slider thumbLabel
-                        min="1" max="10" step="0.5"
-                        tickInterval="1"
-                        formControlName="rooms"
-                        class="slider">
-            </mat-slider>
-          </div>
-          <div>
-            <span>Räume: {{secondFormGroup.get('rooms').value}}</span>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-          <div>
-            <mat-slider thumbLabel
-                        min="1" max="10" step="1"
-                        tickInterval="1"
-                        formControlName="bathrooms"
-                        class="slider">
-            </mat-slider>
-          </div>
-          <div>
-            <span>Bäder: {{secondFormGroup.get('bathrooms').value}}</span>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-          <div>
-            <mat-slider thumbLabel
-                        min="1" max="10" step="0.5"
-                        tickInterval="1"
-                        formControlName="bedrooms"
-                        class="slider">
-            </mat-slider>
-          </div>
-          <div>
-            <span>Schlafzimmer: {{secondFormGroup.get('bedrooms').value}}</span>
-          </div>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-          <div>
-            <mat-slider thumbLabel
-                        min="1" max="15"
-                        tickInterval="1"
-                        formControlName="level"
-                        class="slider">
-            </mat-slider>
-          </div>
-          <div>
-            <span>Etage: {{secondFormGroup.get('level').value}}</span>
-          </div>
-        </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Bekomme eine Vorraussage</ng-template>
+        <button mat-raised-button (click)="getForm()" color="primary" id="resultButton">
+          Zeige mir mein Haus!
+        </button>
         <div>
-          <mat-form-field appearance="fill">
-            <mat-label>Wohnungstyp auswählen</mat-label>
-            <mat-select formControlName="type">
-              <mat-option *ngFor="let type of allTypes" [value]="type">
-                {{type}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <button mat-button matStepperPrevious>Zurück</button>
+          <button mat-button (click)="stepper.reset()">Zurücksetzen</button>
         </div>
-
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Zurück</button>
-        <button mat-button matStepperNext>Weiter</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Stelle zusätzliche Bedürfnisse ein</ng-template>
-      <div *ngFor="let card of booleanParameter">
-        <mat-card style="margin-top: 20px" (click)="clickCard(card)" [ngStyle]="{'border': card.isSelected ? '1px solid red' : ''}">
-          <mat-card-title>{{card.displayName}}</mat-card-title>
-          <mat-card-content>
-            <mat-icon>{{card.icon}}</mat-icon>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Zurück</button>
-        <button mat-button matStepperNext>Weiter</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Bekomme eine Vorraussage</ng-template>
-    <button mat-button (click)="getForm()">
-      get current form
-    </button>
-    <div>
-      <button mat-button matStepperPrevious>Zurück</button>
-      <button mat-button (click)="stepper.reset()">Zurücksetzen</button>
+      </mat-step>
+    </mat-vertical-stepper>
+    <div *ngIf="loading" style="margin-left: 100px; margin-bottom: 20px;">
+      <mat-spinner></mat-spinner>
     </div>
-  </mat-step>
-</mat-vertical-stepper>
-<div *ngIf="!!estimatedPrice">Geschätzter Preis: {{estimatedPrice}}</div>
+    <mat-divider></mat-divider>
+    <div *ngIf="!!estimatedPrice" class="result-section">
+      <h1>Geschätzter Preis: {{estimatedPrice | number}} €</h1>
+    </div>
+  </div>
+
+</div>

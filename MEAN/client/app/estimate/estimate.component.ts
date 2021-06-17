@@ -31,7 +31,7 @@ export class EstimateComponent implements OnInit {
 
   booleanParameter = [
     { name: 'balconyOrTerrace', displayName: 'Balkon oder Terrasse', isSelected: false, icon: 'balcony' },
-    { name: 'basement', displayName: 'Keller', isSelected: false, icon: 'deck' },
+    { name: 'basement', displayName: 'Keller', isSelected: false, icon: 'home_repair_service' },
     { name: 'garden', displayName: 'Garten', isSelected: false, icon: 'yard' },
     { name: 'guestToilet', displayName: 'Gäste-WC', isSelected: false, icon: 'wc' },
     { name: 'kitchen', displayName: 'Einbauküche', isSelected: false, icon: 'countertops' },
@@ -52,6 +52,7 @@ export class EstimateComponent implements OnInit {
   ];
 
   estimatedPrice: number;
+  loading: boolean;
 
   constructor(private _formBuilder: FormBuilder, private estimationService: EstimateService) {}
 
@@ -87,8 +88,13 @@ export class EstimateComponent implements OnInit {
       ...this.secondFormGroup.getRawValue(),
       ...this.thirdFormGroup.getRawValue()
     }
+    this.loading = true;
     this.estimationService.getEstimate(allData).subscribe((result: estimateResult) => {
-      this.estimatedPrice = result?.estimate;
+      setTimeout(()=>{
+        this.loading = false;
+        this.estimatedPrice = result?.estimate;
+        }, 1500)
+
       console.log('result: ', result)
     })
     console.log('allData: ', allData);
