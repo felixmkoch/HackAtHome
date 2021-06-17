@@ -85,6 +85,7 @@ export class EstimateComponent implements OnInit {
       setTimeout(()=>{
         this.loading = false;
         this.estimatedPrice = result?.estimate;
+        if (this.estimatedPrice) this.estimatedPrice = Math.round(this.estimatedPrice / 100) *100
         }, 1)
 
       console.log('result: ', result)
