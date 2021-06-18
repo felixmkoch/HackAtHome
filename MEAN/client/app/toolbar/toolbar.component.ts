@@ -12,4 +12,8 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openGithub() {
+    window.open('https://github.com/FelixMKoch/HackAtHome', '_blank');
+  }
+
 }
