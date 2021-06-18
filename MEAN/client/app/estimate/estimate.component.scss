@@ -35,10 +35,14 @@ mat-radio-group.asCard {
   margin-top: 20px;
 }
 
-#resultButton {
-  margin-left: 25px;
-  margin-right: 25px;
-  margin-bottom: 25px;
+.resultButton {
+  margin-right: 15px!important;
+  margin-bottom: 25px!important;
+}
+
+.resultButtonRight {
+  margin-left: 15px!important;
+  margin-bottom: 25px!important;
 }
 
 .result-section {

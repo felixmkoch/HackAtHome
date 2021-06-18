@@ -112,6 +112,13 @@ export class EstimateComponent implements OnInit {
     }
   }
 
+  openImmoscout(): void {
+    const size = this.secondFormGroup.controls['size'].value;
+    const rooms = this.secondFormGroup.controls['rooms'].value;
+    const baseUrl = `https://www.immobilienscout24.de/Suche/de/bayern/muenchen/wohnung-kaufen?numberofrooms=${rooms}-${rooms}&livingspace=${size-10}-${size+10}&enteredFrom=result_list`
+    window.open(baseUrl, '_blank');
+  }
+
   clickCard(card) {
     card.isSelected = !card.isSelected;
     this.thirdFormGroup.controls[card.name].setValue(card.isSelected);

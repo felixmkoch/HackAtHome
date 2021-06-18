@@ -105,10 +105,18 @@
                   </mat-form-field>
                 </div>
               </div>
-              <div>
-                <button mat-raised-button (click)="openInterhyp()" color="primary" id="resultButton" [disabled]="!calculatorFormGroup.valid">
-                  Zeige mir eine Finanzierungsmöglichkeit!
-                </button>
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <div>
+                  <button mat-raised-button (click)="openInterhyp()" color="primary" class="resultButton" [disabled]="!calculatorFormGroup.valid">
+                    Zeige mir eine Finanzierungsmöglichkeit!
+                  </button>
+                </div>
+
+                <div>
+                  <button mat-raised-button (click)="openImmoscout()" color="primary" class="resultButtonRight">
+                    Zeige mir einige Beispielimmobilien!
+                  </button>
+                </div>
               </div>
             </div>
           </form>
