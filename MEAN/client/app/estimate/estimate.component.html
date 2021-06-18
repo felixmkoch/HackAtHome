@@ -26,7 +26,7 @@
           </div>
 
           <div class="continue-button">
-            <button mat-stroked-button matStepperNext>Weiter</button>
+            <button mat-stroked-button matStepperNext [disabled]="!firstFormGroup.valid">Weiter</button>
           </div>
         </form>
       </mat-step>

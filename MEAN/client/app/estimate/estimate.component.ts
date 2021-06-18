@@ -58,7 +58,7 @@ export class EstimateComponent implements OnInit {
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       propertyType: ['', Validators.required],
-      zipCode: [''],
+      zipCode: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       size: [70],
