@@ -43,6 +43,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {registerLocaleData} from "@angular/common";
 import localeDe from '@angular/common/locales/de';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 registerLocaleData(localeDe);
@@ -89,7 +90,8 @@ registerLocaleData(localeDe);
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule
   ],
   providers: [
     { provide:  LOCALE_ID, useValue: "de-DE" },

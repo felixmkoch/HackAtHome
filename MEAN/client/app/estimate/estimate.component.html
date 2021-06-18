@@ -4,18 +4,29 @@
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Haus oder Wohnung</ng-template>
-          <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
-            <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
-              <mat-card style="margin-top: 20px">
-                <mat-card-title>{{card.name}}</mat-card-title>
-                <mat-card-content>
-                  <mat-icon>{{card.icon}}</mat-icon>
-                </mat-card-content>
-              </mat-card>
-            </mat-radio-button>
-          </mat-radio-group>
-          <div>
-            <button mat-stroked-button matStepperNext>Weiter</button>
+          <div fxLayout="column" fxLayoutAlign="space-around start">
+            <div>
+              <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
+                <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
+                  <mat-card class="selection-card" [ngClass]="card.disabled ? '' : 'hvr-back-pulse'">
+                    <mat-card-title style="word-wrap: break-word;">{{card.name}}</mat-card-title>
+                    <mat-card-content>
+                      <mat-icon>{{card.icon}}</mat-icon>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div style="margin-left: 25px; margin-top: 15px">
+              <mat-form-field appearance="fill">
+                <mat-label>Postleitzahl</mat-label>
+                <input matInput formControlName="zipCode">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="continue-button">
+            <button mat-stroked-button matStepperNext [disabled]="!firstFormGroup.valid">Weiter</button>
           </div>
         </form>
       </mat-step>
@@ -61,21 +72,9 @@
                 <span>Garagenstellplätze: {{secondFormGroup.get('garagePlaces').value}}</span>
               </div>
             </div>
-            <!--
-            <div>
-              <mat-form-field appearance="fill">
-                <mat-label>Wohnungstyp auswählen</mat-label>
-                <mat-select formControlName="type">
-                  <mat-option *ngFor="let type of allTypes" [value]="type">
-                    {{type}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            -->
 
           </div>
-          <div>
+          <div class="continue-button">
             <button mat-button matStepperPrevious>Zurück</button>
             <button mat-stroked-button matStepperNext>Weiter</button>
           </div>
@@ -84,37 +83,88 @@
       <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]="thirdFormGroup">
           <ng-template matStepLabel>Stelle zusätzliche Bedürfnisse ein</ng-template>
-          <div *ngFor="let card of booleanParameter">
-            <mat-card style="margin-top: 20px" (click)="clickCard(card)" [ngStyle]="{'border': card.isSelected ? '1px solid red' : ''}">
-              <mat-card-title>{{card.displayName}}</mat-card-title>
-              <mat-card-content>
-                <mat-icon>{{card.icon}}</mat-icon>
-              </mat-card-content>
-            </mat-card>
+          <div class="grid">
+            <div *ngFor="let card of booleanParameter">
+              <mat-card class="boolean-card hvr-back-pulse" (click)="clickCard(card)" [ngStyle]="{'background-color': card.isSelected ? '#2098D1' : ''}">
+                <mat-card-title style="word-wrap: break-word">{{card.displayName}}</mat-card-title>
+                <mat-card-content>
+                  <mat-checkbox [checked]="card.isSelected" color="black" class="card-checkbox"></mat-checkbox>
+                  <mat-icon>{{card.icon}}</mat-icon>
+                </mat-card-content>
+              </mat-card>
+            </div>
           </div>
-          <div>
+          <div class="continue-button">
             <button mat-button matStepperPrevious>Zurück</button>
-            <button mat-stroked-button matStepperNext style="margin-top: 10px">Weiter</button>
+            <button mat-raised-button color="primary" matStepperNext style="margin-top: 10px" (click)="getForm()">Zeige mir meine Wohnung!</button>
           </div>
         </form>
       </mat-step>
+      <!--
       <mat-step>
-        <ng-template matStepLabel>Bekomme eine Vorraussage</ng-template>
-        <button mat-raised-button (click)="getForm()" color="primary" id="resultButton">
-          Zeige mir mein Haus!
-        </button>
-        <div>
+        <ng-template matStepLabel>Bekomme eine Finanzierung</ng-template>
+          <form [formGroup]="calculatorFormGroup">
+            <div fxLayout="column" fxLayoutAlign="space-around start" >
+
+              <div fxLayout="row" fxLayoutAlign="start center"
+                   fxLayoutAlign.sm="start start"
+                   fxLayoutAlign.xs="start start"
+                   fxLayout.sm="column"
+                   fxLayout.xs="column"
+                   style="margin-top: 20px; padding-bottom: 20px;">
+                <div id="payment-input-left">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Eigenkapital</mat-label>
+                    <input matInput formControlName="own_capital">
+                  </mat-form-field>
+                </div>
+                <div id="payment-input-right">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Postleitzahl der Immobilie</mat-label>
+                    <input matInput formControlName="zip">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start center"
+                   fxLayoutAlign.sm="start start"
+                   fxLayoutAlign.xs="start start"
+                   fxLayout.sm="column"
+                   fxLayout.xs="column">
+                <div>
+                  <button mat-raised-button (click)="openInterhyp()" color="primary" class="resultButton" [disabled]="!calculatorFormGroup.valid">
+                    Zeige mir eine Finanzierungsmöglichkeit!
+                  </button>
+                </div>
+
+                <div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        <div class="continue-button">
           <button mat-button matStepperPrevious>Zurück</button>
           <button mat-button (click)="stepper.reset()">Zurücksetzen</button>
         </div>
       </mat-step>
+      -->
     </mat-vertical-stepper>
     <div *ngIf="loading" style="margin-left: 100px; margin-bottom: 20px;">
       <mat-spinner></mat-spinner>
     </div>
     <mat-divider></mat-divider>
     <div *ngIf="!!estimatedPrice" class="result-section">
-      <h1>Geschätzter Preis: {{estimatedPrice | number}} €</h1>
+      <h1>Geschätzter Preis: {{estimatedPrice | number}} €
+        <mat-icon matTooltip="Dies ist eine Schätzung basierend auf Daten vom 18.06.2021 aus München."
+                  style="margin-left: 10px; vertical-align: text-top;" (click)="openImmoscout()">
+          help_outline
+        </mat-icon>
+      </h1>
+      <div>
+        <button mat-raised-button (click)="openInterhyp()" color="primary" class="resultButton" [disabled]="!calculatorFormGroup.valid">
+          Zeige mir eine Finanzierungsmöglichkeit!
+        </button>
+      </div>
     </div>
   </div>
 

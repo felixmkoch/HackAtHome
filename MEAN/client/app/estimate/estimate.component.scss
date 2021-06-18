@@ -15,31 +15,110 @@
   margin: 10px;
 }
 
-mat-radio-group.asCard{
+mat-radio-group.asCard {
   margin-top: 20px;
-  .mat-radio-container{
+  .mat-radio-container {
     opacity: 0;
   }
 
-  .mat-radio-checked mat-card{
-    border: 1px solid red;
+  .mat-radio-checked mat-card {
+    background-color: #2098D1;
   }
 }
 
-.slider{
+.slider {
   width: 25vw;
   max-width: 300px;
 }
 
-.sliders{
+.sliders {
   margin-top: 20px;
 }
 
-#resultButton{
-  margin: 25px;
+.resultButton {
+  margin-right: 30px!important;
+  margin-bottom: 25px!important;
+}
+
+.resultButtonRight {
+  margin-bottom: 25px!important;
 }
 
 .result-section {
   margin: 15px;
   padding-bottom: 20px;
+}
+
+#payment-input-left {
+  padding-right: 20px;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns:
+      minmax(120px, 500px)
+      minmax(120px, 500px)
+;
+}
+
+.continue-button {
+  margin-top: 15px;
+}
+
+.selection-card {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.boolean-card {
+  margin-top: 20px;
+  width: 75%;
+  height: 80%;
+  //max-width: 200px;
+}
+
+.card-checkbox {
+  vertical-align: text-bottom;
+  margin-right: 10px;
+}
+
+
+@-webkit-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+@keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+.hvr-back-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-back-pulse:hover, .hvr-back-pulse:focus, .hvr-back-pulse:active {
+  cursor: pointer;
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #2098D1;
+  background-color: #2098d1;
+  color: white;
 }
