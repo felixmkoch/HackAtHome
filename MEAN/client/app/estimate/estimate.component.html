@@ -8,7 +8,7 @@
             <div>
               <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
                 <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
-                  <mat-card class="selection-card" [ngClass]="card.disabled ? '' : 'hvr-back-pulse'">
+                  <mat-card class="selection-card">
                     <mat-card-title style="word-wrap: break-word;">{{card.name}}</mat-card-title>
                     <mat-card-content>
                       <mat-icon>{{card.icon}}</mat-icon>
@@ -85,10 +85,9 @@
           <ng-template matStepLabel>Stelle zusätzliche Bedürfnisse ein</ng-template>
           <div class="grid">
             <div *ngFor="let card of booleanParameter">
-              <mat-card class="boolean-card hvr-back-pulse" (click)="clickCard(card)" [ngStyle]="{'background-color': card.isSelected ? '#2098D1' : ''}">
+              <mat-card class="boolean-card" (click)="clickCard(card)" [ngStyle]="{'background-color': card.isSelected ? '#2098D1' : ''}">
                 <mat-card-title style="word-wrap: break-word">{{card.displayName}}</mat-card-title>
                 <mat-card-content>
-                  <mat-checkbox [checked]="card.isSelected" color="black" class="card-checkbox"></mat-checkbox>
                   <mat-icon>{{card.icon}}</mat-icon>
                 </mat-card-content>
               </mat-card>
@@ -96,7 +95,7 @@
           </div>
           <div class="continue-button">
             <button mat-button matStepperPrevious>Zurück</button>
-            <button mat-raised-button color="primary" matStepperNext style="margin-top: 10px" (click)="getForm()">Zeige mir meine Wohnung!</button>
+            <button mat-raised-button color="primary" matStepperNext style="margin-top: 10px" (click)="getForm()">Preiseinschätzung</button>
           </div>
         </form>
       </mat-step>
