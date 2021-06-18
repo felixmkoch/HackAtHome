@@ -3,8 +3,10 @@
   height: 100%;
   position: relative;
   text-align: left;
-  margin-top: -15px;
+  //margin-top: -15px;
   max-width: 98vw;
+  max-height: 98vh;
+  padding-top: 1vh;
   //width: fit-content;
   margin: 0 auto;
 }
@@ -25,7 +27,8 @@ mat-radio-group.asCard{
 }
 
 .slider{
-  width: 300px;
+  width: 25vw;
+  max-width: 300px;
 }
 
 .sliders{
