@@ -23,6 +23,7 @@ export class EstimateComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  calculatorFormGroup: FormGroup;
 
   propertyTypes = [
     { name: 'Eigentumswohnung', icon: 'apartment', disabled: false },
@@ -71,6 +72,11 @@ export class EstimateComponent implements OnInit {
       lift: [false],
       noStairAccess: [false]
     });
+    this.calculatorFormGroup = this._formBuilder.group({
+      price: [0, Validators.required],
+      zip: ['', Validators.required],
+      own_capital: [0, Validators.required],
+    })
   }
 
 
@@ -86,11 +92,24 @@ export class EstimateComponent implements OnInit {
         this.loading = false;
         this.estimatedPrice = result?.estimate;
         if (this.estimatedPrice) this.estimatedPrice = Math.round(this.estimatedPrice / 100) *100
+        this.calculatorFormGroup.controls['price'].setValue(this.estimatedPrice);
+        //this.calculatorFormGroup.updateValueAndValidity();
         }, 1)
 
       console.log('result: ', result)
     })
     console.log('allData: ', allData);
+  }
+
+
+  openInterhyp(): void {
+    if (this.calculatorFormGroup.valid) {
+      const price = this.calculatorFormGroup.controls['price'].value;
+      const zip = this.calculatorFormGroup.controls['zip'].value;
+      const ownCapital = this.calculatorFormGroup.controls['own_capital'].value;
+      const link = `https://www.interhyp.de/zins-check#/vorbefuellter-rechner;ventureReason=KaufGeneral;priceBuilding=${price};equityValue=${ownCapital};zipVenture=${zip};requestResults=true;`
+      window.open(link, '_blank');
+    }
   }
 
   clickCard(card) {

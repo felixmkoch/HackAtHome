@@ -61,18 +61,6 @@
                 <span>Garagenstellplätze: {{secondFormGroup.get('garagePlaces').value}}</span>
               </div>
             </div>
-            <!--
-            <div>
-              <mat-form-field appearance="fill">
-                <mat-label>Wohnungstyp auswählen</mat-label>
-                <mat-select formControlName="type">
-                  <mat-option *ngFor="let type of allTypes" [value]="type">
-                    {{type}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            -->
 
           </div>
           <div>
@@ -94,15 +82,37 @@
           </div>
           <div>
             <button mat-button matStepperPrevious>Zurück</button>
-            <button mat-stroked-button matStepperNext style="margin-top: 10px">Weiter</button>
+            <button mat-stroked-button matStepperNext style="margin-top: 10px" (click)="getForm()">Zeige mir meine Wohnung!</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
-        <ng-template matStepLabel>Bekomme eine Vorraussage</ng-template>
-        <button mat-raised-button (click)="getForm()" color="primary" id="resultButton">
-          Zeige mir mein Haus!
-        </button>
+        <ng-template matStepLabel>Bekomme eine Finanzierung</ng-template>
+          <form [formGroup]="calculatorFormGroup">
+            <div fxLayout="column" fxLayoutAlign="space-around start">
+
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <div class="payment-input-left">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Eigenkapital</mat-label>
+                    <input matInput formControlName="own_capital">
+                  </mat-form-field>
+                </div>
+                <div id="payment-input-right">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Postleitzahl der Immobilie</mat-label>
+                    <input matInput formControlName="zip">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div>
+                <button mat-raised-button (click)="openInterhyp()" color="primary" id="resultButton" [disabled]="!calculatorFormGroup.valid">
+                  Zeige mir eine Finanzierungsmöglichkeit!
+                </button>
+              </div>
+            </div>
+          </form>
+
         <div>
           <button mat-button matStepperPrevious>Zurück</button>
           <button mat-button (click)="stepper.reset()">Zurücksetzen</button>
