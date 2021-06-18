@@ -36,12 +36,11 @@ mat-radio-group.asCard {
 }
 
 .resultButton {
-  margin-right: 15px!important;
+  margin-right: 30px!important;
   margin-bottom: 25px!important;
 }
 
 .resultButtonRight {
-  margin-left: 15px!important;
   margin-bottom: 25px!important;
 }
 
@@ -52,11 +51,25 @@ mat-radio-group.asCard {
 
 #payment-input-left {
   padding-right: 20px;
-  padding-top: 20px;
 }
 
-#payment-input-right {
-  padding-left: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+
+.grid {
+  display: grid;
+  grid-template-columns:
+      minmax(120px, 500px)
+      minmax(120px, 500px)
+;
+}
+
+.selection-card {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.boolean-card {
+  margin-top: 20px;
+  width: 75%;
+  height: 80%;
+  //max-width: 200px;
 }
