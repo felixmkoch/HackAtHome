@@ -132,7 +132,13 @@
     </div>
     <mat-divider></mat-divider>
     <div *ngIf="!!estimatedPrice" class="result-section">
-      <h1>Geschätzter Preis: {{estimatedPrice | number}} €</h1>
+      <h1>Geschätzter Preis: {{estimatedPrice | number}} €
+        <mat-icon matTooltip="Dies ist eine Schätzung, basierend auf Daten vom 18.06.2021 aus München."
+                  style="margin-left: 10px; vertical-align: text-top;">
+          help_outline
+        </mat-icon>
+      </h1>
+
     </div>
   </div>
 
