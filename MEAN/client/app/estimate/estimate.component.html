@@ -6,15 +6,15 @@
           <ng-template matStepLabel>Haus oder Wohnung</ng-template>
           <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
             <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
-              <mat-card style="margin-top: 20px">
-                <mat-card-title>{{card.name}}</mat-card-title>
+              <mat-card class="selection-card">
+                <mat-card-title style="word-wrap: break-word;">{{card.name}}</mat-card-title>
                 <mat-card-content>
                   <mat-icon>{{card.icon}}</mat-icon>
                 </mat-card-content>
               </mat-card>
             </mat-radio-button>
           </mat-radio-group>
-          <div>
+          <div class="continue-button">
             <button mat-stroked-button matStepperNext>Weiter</button>
           </div>
         </form>
@@ -63,7 +63,7 @@
             </div>
 
           </div>
-          <div>
+          <div class="continue-button">
             <button mat-button matStepperPrevious>Zurück</button>
             <button mat-stroked-button matStepperNext>Weiter</button>
           </div>
@@ -72,27 +72,34 @@
       <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]="thirdFormGroup">
           <ng-template matStepLabel>Stelle zusätzliche Bedürfnisse ein</ng-template>
-          <div *ngFor="let card of booleanParameter">
-            <mat-card style="margin-top: 20px" (click)="clickCard(card)" [ngStyle]="{'border': card.isSelected ? '1px solid red' : ''}">
-              <mat-card-title>{{card.displayName}}</mat-card-title>
-              <mat-card-content>
-                <mat-icon>{{card.icon}}</mat-icon>
-              </mat-card-content>
-            </mat-card>
+          <div class="grid">
+            <div *ngFor="let card of booleanParameter">
+              <mat-card class="boolean-card" (click)="clickCard(card)" [ngStyle]="{'border': card.isSelected ? '1px solid red' : ''}">
+                <mat-card-title style="word-wrap: break-word">{{card.displayName}}</mat-card-title>
+                <mat-card-content>
+                  <mat-icon>{{card.icon}}</mat-icon>
+                </mat-card-content>
+              </mat-card>
+            </div>
           </div>
-          <div>
+          <div class="continue-button">
             <button mat-button matStepperPrevious>Zurück</button>
-            <button mat-stroked-button matStepperNext style="margin-top: 10px" (click)="getForm()">Zeige mir meine Wohnung!</button>
+            <button mat-raised-button color="primary" matStepperNext style="margin-top: 10px" (click)="getForm()">Zeige mir meine Wohnung!</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Bekomme eine Finanzierung</ng-template>
           <form [formGroup]="calculatorFormGroup">
-            <div fxLayout="column" fxLayoutAlign="space-around start">
+            <div fxLayout="column" fxLayoutAlign="space-around start" >
 
-              <div fxLayout="row" fxLayoutAlign="start center">
-                <div class="payment-input-left">
+              <div fxLayout="row" fxLayoutAlign="start center"
+                   fxLayoutAlign.sm="start start"
+                   fxLayoutAlign.xs="start start"
+                   fxLayout.sm="column"
+                   fxLayout.xs="column"
+                   style="margin-top: 20px; padding-bottom: 20px;">
+                <div id="payment-input-left">
                   <mat-form-field appearance="fill">
                     <mat-label>Eigenkapital</mat-label>
                     <input matInput formControlName="own_capital">
@@ -105,7 +112,11 @@
                   </mat-form-field>
                 </div>
               </div>
-              <div fxLayout="row" fxLayoutAlign="start center">
+              <div fxLayout="row" fxLayoutAlign="start center"
+                   fxLayoutAlign.sm="start start"
+                   fxLayoutAlign.xs="start start"
+                   fxLayout.sm="column"
+                   fxLayout.xs="column">
                 <div>
                   <button mat-raised-button (click)="openInterhyp()" color="primary" class="resultButton" [disabled]="!calculatorFormGroup.valid">
                     Zeige mir eine Finanzierungsmöglichkeit!
@@ -121,7 +132,7 @@
             </div>
           </form>
 
-        <div>
+        <div class="continue-button">
           <button mat-button matStepperPrevious>Zurück</button>
           <button mat-button (click)="stepper.reset()">Zurücksetzen</button>
         </div>
@@ -133,7 +144,7 @@
     <mat-divider></mat-divider>
     <div *ngIf="!!estimatedPrice" class="result-section">
       <h1>Geschätzter Preis: {{estimatedPrice | number}} €
-        <mat-icon matTooltip="Dies ist eine Schätzung, basierend auf Daten vom 18.06.2021 aus München."
+        <mat-icon matTooltip="Dies ist eine Schätzung basierend auf Daten vom 18.06.2021 aus München."
                   style="margin-left: 10px; vertical-align: text-top;">
           help_outline
         </mat-icon>
