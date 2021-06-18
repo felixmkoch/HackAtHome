@@ -58,6 +58,7 @@ export class EstimateComponent implements OnInit {
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       propertyType: ['', Validators.required],
+      zipCode: [''],
     });
     this.secondFormGroup = this._formBuilder.group({
       size: [70],
@@ -91,7 +92,10 @@ export class EstimateComponent implements OnInit {
       setTimeout(()=>{
         this.loading = false;
         this.estimatedPrice = result?.estimate;
+        const zip = this.firstFormGroup.controls['zipCode'].value;
+        this.calculatorFormGroup.controls['zip'].setValue(zip || '81677');
         if (this.estimatedPrice) this.estimatedPrice = Math.round(this.estimatedPrice / 100) *100
+        this.calculatorFormGroup.controls['own_capital'].setValue(this.estimatedPrice / 10);
         this.calculatorFormGroup.controls['price'].setValue(this.estimatedPrice);
         //this.calculatorFormGroup.updateValueAndValidity();
         }, 1)

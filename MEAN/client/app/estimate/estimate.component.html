@@ -4,16 +4,27 @@
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Haus oder Wohnung</ng-template>
-          <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
-            <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
-              <mat-card class="selection-card">
-                <mat-card-title style="word-wrap: break-word;">{{card.name}}</mat-card-title>
-                <mat-card-content>
-                  <mat-icon>{{card.icon}}</mat-icon>
-                </mat-card-content>
-              </mat-card>
-            </mat-radio-button>
-          </mat-radio-group>
+          <div fxLayout="column" fxLayoutAlign="space-around start">
+            <div>
+              <mat-radio-group class="asCard" style="margin-top: 20px" formControlName="propertyType">
+                <mat-radio-button *ngFor="let card of propertyTypes" [value]="card.name" [disabled]="card.disabled">
+                  <mat-card class="selection-card" [ngClass]="card.disabled ? '' : 'hvr-back-pulse'">
+                    <mat-card-title style="word-wrap: break-word;">{{card.name}}</mat-card-title>
+                    <mat-card-content>
+                      <mat-icon>{{card.icon}}</mat-icon>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div style="margin-left: 25px; margin-top: 15px">
+              <mat-form-field appearance="fill">
+                <mat-label>Postleitzahl</mat-label>
+                <input matInput formControlName="zipCode">
+              </mat-form-field>
+            </div>
+          </div>
+
           <div class="continue-button">
             <button mat-stroked-button matStepperNext>Weiter</button>
           </div>
@@ -74,9 +85,10 @@
           <ng-template matStepLabel>Stelle zusätzliche Bedürfnisse ein</ng-template>
           <div class="grid">
             <div *ngFor="let card of booleanParameter">
-              <mat-card class="boolean-card" (click)="clickCard(card)" [ngStyle]="{'border': card.isSelected ? '1px solid red' : ''}">
+              <mat-card class="boolean-card hvr-back-pulse" (click)="clickCard(card)" [ngStyle]="{'background-color': card.isSelected ? '#2098D1' : ''}">
                 <mat-card-title style="word-wrap: break-word">{{card.displayName}}</mat-card-title>
                 <mat-card-content>
+                  <mat-checkbox [checked]="card.isSelected" color="black" class="card-checkbox"></mat-checkbox>
                   <mat-icon>{{card.icon}}</mat-icon>
                 </mat-card-content>
               </mat-card>
@@ -88,6 +100,7 @@
           </div>
         </form>
       </mat-step>
+      <!--
       <mat-step>
         <ng-template matStepLabel>Bekomme eine Finanzierung</ng-template>
           <form [formGroup]="calculatorFormGroup">
@@ -124,9 +137,6 @@
                 </div>
 
                 <div>
-                  <button mat-raised-button (click)="openImmoscout()" color="primary" class="resultButtonRight">
-                    Zeige mir einige Beispielimmobilien!
-                  </button>
                 </div>
               </div>
             </div>
@@ -137,6 +147,7 @@
           <button mat-button (click)="stepper.reset()">Zurücksetzen</button>
         </div>
       </mat-step>
+      -->
     </mat-vertical-stepper>
     <div *ngIf="loading" style="margin-left: 100px; margin-bottom: 20px;">
       <mat-spinner></mat-spinner>
@@ -145,11 +156,15 @@
     <div *ngIf="!!estimatedPrice" class="result-section">
       <h1>Geschätzter Preis: {{estimatedPrice | number}} €
         <mat-icon matTooltip="Dies ist eine Schätzung basierend auf Daten vom 18.06.2021 aus München."
-                  style="margin-left: 10px; vertical-align: text-top;">
+                  style="margin-left: 10px; vertical-align: text-top;" (click)="openImmoscout()">
           help_outline
         </mat-icon>
       </h1>
-
+      <div>
+        <button mat-raised-button (click)="openInterhyp()" color="primary" class="resultButton" [disabled]="!calculatorFormGroup.valid">
+          Zeige mir eine Finanzierungsmöglichkeit!
+        </button>
+      </div>
     </div>
   </div>
 
