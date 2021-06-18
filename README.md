@@ -15,4 +15,11 @@ pip3 install -r requirements.txt" before running the model server with "python3 
 - Angular
 - NodeJS
 
+### Run MEAN stack
+
+``` bash
+npm install
+npm run dev
+```
+
 Back- and Frontend for the application presented on the website.
