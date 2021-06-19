@@ -1,0 +1,84 @@
+.estimator {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: left;
+  //margin-top: -15px;
+  max-width: 98vw;
+  max-height: 98vh;
+  padding-top: 1vh;
+  //width: fit-content;
+  margin: 0 auto;
+}
+
+.checkbox {
+  margin: 10px;
+}
+
+mat-radio-group.asCard {
+  margin-top: 20px;
+  .mat-radio-container {
+    opacity: 0;
+  }
+
+  .mat-radio-checked mat-card {
+    background-color: #2098D1;
+  }
+}
+
+.slider {
+  width: 25vw;
+  max-width: 300px;
+}
+
+.sliders {
+  margin-top: 20px;
+}
+
+.resultButton {
+  margin-right: 30px!important;
+  margin-bottom: 25px!important;
+}
+
+.resultButtonRight {
+  margin-bottom: 25px!important;
+}
+
+.result-section {
+  margin: 15px;
+  padding-bottom: 20px;
+}
+
+#payment-input-left {
+  padding-right: 20px;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns:
+      minmax(120px, 500px)
+      minmax(120px, 500px)
+;
+}
+
+.continue-button {
+  margin-top: 15px;
+}
+
+.selection-card {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.boolean-card {
+  margin-top: 20px;
+  width: 75%;
+  height: 80%;
+  //max-width: 200px;
+}
+
+.card-checkbox {
+  vertical-align: text-bottom;
+  margin-right: 10px;
+}
