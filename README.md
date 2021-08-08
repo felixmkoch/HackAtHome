@@ -1,5 +1,7 @@
 # HackAtHome : Homestead
 
+Presentation (german): https://www.youtube.com/watch?v=flO-l6gJKEA
+
 ## Project is divided into two parts:
 
 ### Flask Service
